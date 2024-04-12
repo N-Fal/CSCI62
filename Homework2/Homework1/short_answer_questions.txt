@@ -1,0 +1,9 @@
+1.  The advantage of storing users in the network class in a vector of User pointers is that we only have to store one copy of each user object in memory, instead of making copies as their passed to different functions. We only need to make copies of the pointers instead, which are much smaller in memory.
+
+2. By returning the set by reference we avoid unnessecary copying again. By using the same set object for both storing and processing, we save on memory.
+
+3. Sets are ordered and cannot contain duplicate values, unlike vectors. This is convinient for storing User ids because we don't require duplicates, and having them ordered by default is convinient for sorting purposes.
+
+4. Header guards are used to ensure that the compiler doesn't copy the contents of a header file multiple times when it's included in another file. '#ifndef' checks if the class doesn't already have a header with the given guard included, and '#define' and '#endif' denote the beginning and end of what should be copied during the inclusion.
+
+5. Pushing pointers to Users allocated on the stack does not work because those pointers will go out of scope and cease to exist. This means we no longer have a pointer that points to the User object and we can no longer access it.
