@@ -1,0 +1,45 @@
+Part 1:
+    1. The terminal outputted "make: 'output' is up to date." implying there was nothing new to compile.
+    2. It re-ran the g++ command and re-compiled the executable
+    3. It outputted that the executable was still up to date.
+    4. Output properly compiled.
+    5. Dependencies tell the compiler which files need to be re-compiled.
+
+Part 2:
+    1. The following commands were run:
+        g++ -c main.cpp -o main.o
+        g++ -c class1.cpp -o class1.o
+        g++ -c class2.cpp -o class2.o
+        g++ main.o class1.o class2.o -o output
+    
+    2. The first three are compiled with the -c flag, and the last one is compiled without the c-
+    3. main.o, class1.o, class2.o, and output.exe were added to the directory
+    4. Only class1.cpp and main.o were re-compiled
+    5. The three files with the *.o extension were removed from the directory.
+    6. only 'main.o' was compiled.
+    7. class1.o and class2.o were compiled, and output.exe was linked.
+    8. Yes, it still worked when I moved the -c flag.
+    9. Yes, it still worked when I moved the -o flag (alongside the desired file name).
+    
+Part 3:
+    1. The following commands were run:
+        g++ -c main.cpp -o main.o
+        g++ -c class1.cpp -o class1.o
+        g++ -c class2.cpp -o class2.o
+        g++ main.o class1.o class2.o -o output
+
+    2. Each individual file compiled but the linking step did not work.
+    3. Everything compiled properly.
+    4. 
+        $@ refers to the name of the target / the name of the outputted compiled file
+        $< refers to the first dependency in the target list
+        $^ refers to every dependency in the target list
+
+Part 4:
+    1. main.cpp, class1.cpp, and class2.cpp were compiled and linked into output.exe
+    2. It knew which files to compile because they were listed in the dependencies of the 'output' target
+
+Part 5:
+    1. The same commands are run with the additiona -Wall flag.
+    2. the -std=c++11 flag is added to each command as well.
+    3. Variables like these could help with readability in a large makefile, and if you need to compile multiple files with a lot of flags it can be more efficient to use a variable to refer to them all.
