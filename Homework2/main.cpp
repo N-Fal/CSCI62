@@ -1,64 +1,64 @@
 #include "user.h"
+#include "network.h"
 #include <iostream>
 #include <set>
 
 using namespace std;
 
-void printUsers(User * users)
+int main(int argc, char* argv[])
 {
-    for (int i = 0; i < 2; i++)
+    
+
+    cout << "TEST EXECUTABLE" << endl;
+
+    if (argc <= 1)
     {
-        cout << "id: " << users[i].getId() << endl;
-        cout << "name: " << users[i].getName() << endl;
-        cout << "year: " << users[i].getYear() << endl;
-        cout << "zip: " << users[i].getZip() << endl;
-
-
-        cout << "friends: ";
-        std::set<int> userFriends = users[i].getFriends();
-        for (auto j = userFriends.begin(); j != userFriends.end(); j++)
-        {
-            cout << *j << " ";
-        }
-        cout << endl << endl;
+        cout << "Please enter a file name as an argument to initialize the network.";
+        return 1;
     }
-}
 
+    char* inputFile = argv[1];
 
-int main()
-{
+    cout << "loading " << inputFile << " ..." << endl;
 
-    // should compile but would break if anything is called
-    User emptyUser;
+    Network network;
 
+    if (network.readUsers(inputFile) == -1)
+    {
+        cout << "The file " << inputFile << " could not be found in the directory. Please make sure you entered the name correctly and try again";
+        return 2;
+    }
+    
+    cout << inputFile << " is loaded into the network." << endl << endl;
 
-    std::set<int> nolanList;
-    User nolan(0, "Nolan Fallin", 2005, 95052, nolanList);
+    while (true)
+    {
+        cout << "type 0 than the params" << endl << "> ";
+        string first1, last1;
+        int input, dist;
 
-    std::set<int> seanList;
-    User sean(1, "Sean Talley", 2005, 94501, seanList);
+        cin >> input;
 
-    std::set<int> evanList;
-    User evan(2, "Evan Yip", 2005, 94501, evanList);
-
-    nolan.addFriend(sean.getId());
-    sean.addFriend(nolan.getId());
-    nolan.addFriend(evan.getId());
-    cout << "sean and nolan are square waves now! :>" << endl << endl;
-
-    User users[] {nolan, sean, evan};
-
-    printUsers(users);
-
-
-    // set<int> list = nolan.getFriends();
-    // for (auto i = list.begin(); i != list.end(); i++)
-    // {
-    //     cout << *i << " ";
-    // }
-    // cout << endl;
-
-    printUsers(users);
+        if (input != 0)
+        {
+            cout << "exiting";
+            break;
+        }
+        else
+        {
+           vector<vector<int> > components = network.groups();
+           int setNum = 1;
+           for (vector<int> component : components)
+           {
+                cout << "Set " << setNum++ << "IS SIZE " << component.size() << " => ";
+                for (int i : component)
+                {
+                    cout << network.getUser(i)->getName() << ", ";
+                }
+                cout << endl;
+           }
+        }
+    }
 
     return 0;
 }

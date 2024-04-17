@@ -49,11 +49,37 @@ public:
     // post: Returns a pointer to the user in this network with the given ID. If the user is not present in this network, a nullptr is returned.  
     User* getUser(int id);
 
+    // pre: 'from' and 'to' are IDs in the users_ vector
+    // post: returns a vector containing a shortest path of friend connections (as IDs) from User "from" to user "to."
+    std::vector<int> shortestPath(int from, int to);
+
+    // pre: 'from' is an ID in the users_ vector
+    // post: returns a vector containing a path of relational distance 'distance' starting at the User with ID 'from.' 'to' is updated to the User at the end of this path.
+    //       if no path of the given distance exists than 'to' is set to -1 and an empty vector is returned.
+    std::vector<int> distanceUser(int from, int& to, int distance);
+
+    // pre: 'who' is an ID in the users_ vector
+    // post: returns a vector of IDs of relational distance 2 that share the highest "friendship score" (the number of common friends they share with user 'who').
+    //       'score' is updated to the highest found score. If no candidates are found score is set to 0 and an empty vector is returned.
+    std::vector<int> suggestFriends(int who, int& score);
+
+    // pre: none
+    // post: retuns a vector of vectors of all connected components in this network
+    std::vector<std::vector<int> > groups();
+
 private:
     std::vector<User*> users_;
 
     // INVARIANTS:
     // users_ is a vector of pointers to all of the dynamically allocated user objects that make up this network
+    
+
+
+    // PRIVATE MEMBER FUNCTIONS:
+    
+    // pre: 'origin' is an ID in the users_ vector
+    // post: returns a 'prev' vector containing the paths obtained from a breadth-first search of the network starting at 'origin'
+    std::vector<int> bfs(int origin); 
 };
 
 #endif

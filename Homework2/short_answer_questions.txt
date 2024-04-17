@@ -1,9 +1,17 @@
-1.  The advantage of storing users in the network class in a vector of User pointers is that we only have to store one copy of each user object in memory, instead of making copies as their passed to different functions. We only need to make copies of the pointers instead, which are much smaller in memory.
+1. I used 'mkdir' to create a new folder, and 'cp' with the -r tag to copy the files
 
-2. By returning the set by reference we avoid unnessecary copying again. By using the same set object for both storing and processing, we save on memory.
+2. shortestPath() could not be solved with depth-first searching because depth-first searching actively seeks the longesqt path away from the origin, when instead we want the shortest.
+   distanceUser() could be solved with depth-first searching because we're only looking for a path of a given length, something both styles of traversal can find.
 
-3. Sets are ordered and cannot contain duplicate values, unlike vectors. This is convinient for storing User ids because we don't require duplicates, and having them ordered by default is convinient for sorting purposes.
+3. Yes, breadth-first search could be used to find all connected components in a graph. 
+   Both traversal methods will find every node connected to the origin.
 
-4. Header guards are used to ensure that the compiler doesn't copy the contents of a header file multiple times when it's included in another file. '#ifndef' checks if the class doesn't already have a header with the given guard included, and '#define' and '#endif' denote the beginning and end of what should be copied during the inclusion.
+4. Yes, it could be solved by iterating through each friend list of the given user's friend list and scoring each one, but that would have a much higher time complexity and be less efficient than using graph traversal.
 
-5. Pushing pointers to Users allocated on the stack does not work because those pointers will go out of scope and cease to exist. This means we no longer have a pointer that points to the User object and we can no longer access it.
+5. My shortestPath() implementation has a time complexity of O(N + M).
+   The time complexity of BFS is O(N + M), and the worst case scenario has a shortest path that spans every vertex in the graph (O(N)).
+
+6. My groups() implementation has a time complexity of O(N + M). 
+   The time complexity of DFS is O(N + M), and the number of vertices traversed by the multipled DFSs adds up to the total size of the network.
+
+7. I'm not completely sure but I think I spent 6-7 hours.
