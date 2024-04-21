@@ -1,0 +1,17 @@
+1. I used 'mkdir' to create a new folder, and 'cp' with the -r tag to copy the files
+
+2. shortestPath() could not be solved with depth-first searching because depth-first searching actively seeks the longesqt path away from the origin, when instead we want the shortest.
+   distanceUser() could be solved with depth-first searching because we're only looking for a path of a given length, something both styles of traversal can find.
+
+3. Yes, breadth-first search could be used to find all connected components in a graph. 
+   Both traversal methods will find every node connected to the origin.
+
+4. Yes, it could be solved by iterating through each friend list of the given user's friend list and scoring each one, but that would have a much higher time complexity and be less efficient than using graph traversal.
+
+5. My shortestPath() implementation has a time complexity of O(N + M).
+   The time complexity of BFS is O(N + M), and the worst case scenario has a shortest path that spans every vertex in the graph (O(N)).
+
+6. My groups() implementation has a time complexity of O(N + M). 
+   The time complexity of DFS is O(N + M), and the number of vertices traversed by the multipled DFSs adds up to the total size of the network.
+
+7. I'm not completely sure but I think I spent 6-7 hours.
