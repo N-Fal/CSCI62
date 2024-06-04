@@ -1,0 +1,8 @@
+1. Reason 1 is that it's less resource-intense to use pointers because we avoid unessecary copying as we transfer the vector between functions
+   Reason 2 is that because the posts are dynamically allocated, the objects will exist in memory even when they leave the current scope, and we'll be able to access them later.
+
+2. The message field is a private instance variable in the Post class; InstancePost cannot access private variables in its parent class directly.
+
+3. The 'virtual' keyword makes this type of behavior (polymorphism) possible, and it's included at the beginning of the function signature in the parent class.
+
+4. I spent I spent around 7-8 hours on this assignment.
